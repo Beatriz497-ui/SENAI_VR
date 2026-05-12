@@ -1,66 +1,44 @@
 <?php
 session_start();
-if (!isset($_SESSION['usuario_logado'])) {
-    header("Location: ../login.php");
-    exit();
-}
-
 require_once '../layout.php';
 
-$nome_usuario = $_SESSION['usuario_nome'] ?? 'Pesquisador';
+$nome = $_SESSION['usuario_nome'] ?? 'User';
 
-// Montagem do conteúdo da Dashboard (Interface de Chat IA sem os banners da direita)
 $conteudo = "
-<div class='flex flex-col h-[calc(100vh-80px)] p-6 gap-6'>
+<div class='flex flex-col h-[calc(100vh-64px)] overflow-hidden bg-transparent'>
     
-    <div class='flex justify-between items-center'>
-        <div>
-            <span class='text-cyan-400 text-[10px] font-bold tracking-[0.2em] uppercase'>Sessão Interativa</span>
-            <h1 class='text-3xl font-bold text-white'>Assistente Espacial IA</h1>
-        </div>
-        <div class='flex items-center gap-3 bg-slate-900/50 px-4 py-2 rounded-full border border-white/5'>
-            <div class='w-2 h-2 bg-green-500 rounded-full animate-pulse'></div>
-            <span class='text-[10px] font-bold text-slate-300 tracking-widest uppercase'>Link Neural Ativo</span>
-        </div>
-    </div>
-
-    <div class='flex flex-1 gap-6 overflow-hidden'>
+    <div id='chatContainer' class='flex-1 overflow-y-auto p-8 space-y-6 scrollbar-hide'>
         
-        <div id='chatContainer' class='flex-1 flex flex-col gap-4 overflow-y-auto pr-2 scrollbar-hide'>
-            
-            <div class='flex gap-4 mb-4'>
-                <div class='w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center border border-cyan-500/30 flex-shrink-0'>
-                    <span class='material-symbols-outlined text-cyan-400'>smart_toy</span>
-                </div>
-                <div class='glass-panel p-6 rounded-2xl rounded-tl-none max-w-2xl border border-white/5'>
-                    <p class='text-slate-300 leading-relaxed'>
-                        Saudações, $nome_usuario. Eu sou o seu Assistente Virtual. O que vamos investigar hoje?
-                    </p>
-                    </p>
-                </div>
+        <div class='flex gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700'>
+            <div class='w-10 h-10 rounded-xl glass flex items-center justify-center border border-cyan-400/20 shadow-[0_0_15px_rgba(34,211,238,0.1)]'>
+                <span class='material-symbols-outlined text-cyan-400'>smart_toy</span>
             </div>
+            <div class='glass p-5 rounded-2xl rounded-tl-none max-w-2xl border border-white/5'>
+                <p class='text-sm leading-relaxed text-slate-300'>
+                    Olá <span class='text-white font-bold'>$nome</span>, sua interface neural está sincronizada. Como posso auxiliar em sua jornada imersiva hoje?
+                </p>
+            </div>
+        </div>
 
-        </div>
-        </div>
-
-    <div class='relative mt-auto'>
-        <div class='absolute left-5 top-1/2 -translate-y-1/2 flex gap-4 text-slate-500'>
-            <input type='file' id='fileInput' class='hidden' onchange='handleFile(this)'>
-            <span class='material-symbols-outlined cursor-pointer hover:text-white transition-colors' onclick='document.getElementById(\"fileInput\").click()'>attachment</span>
-        </div>
-        
-        <input type='text' id='userInput' placeholder='Pergunte sobre módulos espaciais, atualizações ou hardware...' 
-            class='w-full bg-slate-900/50 border border-white/10 rounded-2xl py-5 pl-14 pr-32 text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all'>
-        
-        <div class='absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2'>
-            <button onclick='enviarMensagem()' class='bg-cyan-400 hover:bg-cyan-300 text-slate-950 p-2 rounded-xl transition-all shadow-lg shadow-cyan-500/20'>
-                <span class='material-symbols-outlined font-bold'>send</span>
-            </button>
-        </div>
     </div>
-    
-    <div class='text-center'>
-        <p class='text-[9px] text-slate-600 font-bold tracking-[0.3em] uppercase'>Link Neural Criptografado de Ponta-a-Ponta • Spatial Engine v4.2.0</p>
+
+    <div class='p-6 bg-gradient-to-t from-slate-950 to-transparent'>
+        <div class='max-w-4xl mx-auto relative'>
+            <div class='glass rounded-[2rem] p-2 flex items-center border border-white/10 focus-within:border-cyan-400/50 transition-all shadow-2xl'>
+                
+                <button class='p-3 text-slate-500 hover:text-cyan-400 transition-colors' title='Anexar'>
+                    <span class='material-symbols-outlined text-[22px]'>attach_file</span>
+                </button>
+                
+                <input type='text' id='userInput' placeholder='Pergunte algo para a IA...' 
+                    class='flex-1 bg-transparent border-none focus:ring-0 text-sm text-white px-2 placeholder:text-slate-600'>
+                
+                <button onclick='enviarMensagem()' class='bg-cyan-400 hover:bg-cyan-300 text-slate-950 w-11 h-11 rounded-full flex items-center justify-center transition-all shadow-lg hover:scale-105 active:scale-95'>
+                    <span class='material-symbols-outlined font-bold'>arrow_upward</span>
+                </button>
+            </div>
+            <p class='text-[9px] text-center mt-3 text-slate-600 tracking-widest uppercase font-bold'>Ethereal Neural Link • Senai VR Interface</p>
+        </div>
     </div>
 </div>
 
@@ -71,53 +49,42 @@ $conteudo = "
         const texto = input.value.trim();
 
         if (texto !== '') {
-            // Adiciona mensagem do usuário
-            const userMsg = `
-                <div class='flex gap-4 justify-end mb-4'>
-                    <div class='glass-panel p-6 rounded-2xl rounded-tr-none max-w-xl border border-cyan-500/20 bg-cyan-500/5'>
-                        <p class='text-slate-200'>\${texto}</p>
-                    </div>
-                    <div class='w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center border border-white/10 flex-shrink-0'>
-                        <span class='material-symbols-outlined text-slate-400'>person</span>
+            // Bolha do Usuário
+            container.innerHTML += `
+                <div class='flex gap-4 justify-end items-start animate-in fade-in slide-in-from-bottom-2 duration-300'>
+                    <div class='bg-cyan-400/10 border border-cyan-400/20 p-4 rounded-2xl rounded-tr-none max-w-xl shadow-lg'>
+                        <p class='text-sm text-cyan-50 text-right'>\${texto}</p>
                     </div>
                 </div>
             `;
-            container.innerHTML += userMsg;
             
             input.value = '';
             container.scrollTop = container.scrollHeight;
 
-            // Simula resposta da IA após 1 segundo
+            // Resposta Simulada
             setTimeout(() => {
-                const aiMsg = `
-                    <div class='flex gap-4 mb-4'>
-                        <div class='w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center border border-cyan-500/30 flex-shrink-0'>
+                const respostaIA = texto.toLowerCase().includes('quest') 
+                    ? 'Para ligar o Meta Quest, pressione o botão lateral por 2 segundos. O logo da Meta aparecerá no visor.'
+                    : 'Processando solicitação... Módulos de matérias carregados. Deseja que eu explique um tópico específico?';
+
+                container.innerHTML += `
+                    <div class='flex gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300'>
+                        <div class='w-10 h-10 rounded-xl glass flex items-center justify-center border border-cyan-400/20'>
                             <span class='material-symbols-outlined text-cyan-400'>smart_toy</span>
                         </div>
-                        <div class='glass-panel p-6 rounded-2xl rounded-tl-none max-w-2xl border border-white/5 text-slate-300 italic'>
-                            Analisando dados neurais para sua consulta... Acesso concedido ao módulo de conhecimento. Como posso ajudar mais com \"\${texto}\"?
+                        <div class='glass p-5 rounded-2xl rounded-tl-none max-w-2xl border border-white/5'>
+                            <p class='text-sm leading-relaxed text-slate-300'>\${respostaIA}</p>
                         </div>
                     </div>
                 `;
-                container.innerHTML += aiMsg;
                 container.scrollTop = container.scrollHeight;
             }, 1000);
         }
     }
 
-    // Enviar com a tecla ENTER
-    document.getElementById('userInput').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') enviarMensagem();
-    });
-
-    // Função para o Anexo
-    function handleFile(input) {
-        if (input.files && input.files[0]) {
-            alert('Arquivo \"' + input.files[0].name + '\" detectado. Iniciando upload para o núcleo espacial...');
-        }
-    }
+    document.getElementById('userInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') enviarMensagem(); });
 </script>
 ";
 
-renderizar_pagina("Assistente IA", $conteudo);
+renderizar_pagina("Painel de Controle", $conteudo);
 ?>
