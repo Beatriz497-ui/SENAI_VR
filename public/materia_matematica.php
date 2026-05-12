@@ -1,0 +1,91 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario_logado'])) {
+    header("Location: ../login.php");
+    exit();
+}
+require_once '../layout.php';
+
+// Configurações específicas da Matemática
+$titulo = "Matemática Espacial";
+$subtitulo = "Exploração de Geometria e Sólidos 3D";
+$icone = "calculate";
+$cor = "purple"; // Cor roxa para Matemática
+$videoID = "q-MAnD7SjL0"; // Vídeo sobre Sólidos Geométricos em VR/360
+$videoTitulo = "Explorando Sólidos Geométricos no Espaço";
+$videoTempo = "06:15";
+
+$extra_css = "
+<style>
+    .video-card { background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
+    .video-card:hover { border-color: #a855f7; transform: translateY(-8px); background: rgba(168, 85, 247, 0.05); }
+    .play-overlay { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px); opacity: 0; transition: opacity 0.3s ease; }
+    .video-card:hover .play-overlay { opacity: 1; }
+    .qr-box { background: #fff; padding: 16px; border-radius: 2rem; display: inline-block; box-shadow: 0 0 40px rgba(168, 85, 247, 0.2); }
+</style>";
+
+$conteudo = $extra_css . "
+<div class='p-10 animate-in fade-in duration-500'>
+    <div class='max-w-4xl mx-auto space-y-12'>
+        
+        <header class='flex justify-between items-center'>
+            <div class='flex items-center gap-6'>
+                <div class='w-20 h-20 bg-purple-500/10 rounded-[2rem] flex items-center justify-center border border-purple-500/20'>
+                    <span class='material-symbols-outlined text-purple-400 text-5xl'>{$icone}</span>
+                </div>
+                <div>
+                    <h1 class='text-4xl font-bold headline text-white'>{$titulo}</h1>
+                    <p class='text-purple-500/60 font-bold uppercase tracking-widest text-[10px] mt-1'>{$subtitulo}</p>
+                </div>
+            </div>
+            <a href='materias.php' class='px-6 py-2 border border-white/10 rounded-xl hover:bg-white/5 transition-all text-sm font-bold text-slate-400'>Voltar</a>
+        </header>
+
+        <section class='space-y-6 text-center'>
+             <h2 class='text-xl font-bold text-white flex items-center justify-center gap-2 headline'>
+                <span class='material-symbols-outlined text-purple-400'>3d_rotation</span>
+                Visualização de Sólidos em VR
+            </h2>
+            <div class='video-card rounded-[3rem] overflow-hidden group cursor-pointer max-w-2xl mx-auto' onclick='abrirVideo(\"https://www.youtube.com/embed/{$videoID}\")'>
+                <div class='relative h-64 bg-slate-900'>
+                    <img src='https://img.youtube.com/vi/{$videoID}/maxresdefault.jpg' class='w-full h-full object-cover opacity-60'>
+                    <div class='play-overlay absolute inset-0 flex items-center justify-center'>
+                        <div class='w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center shadow-lg'>
+                            <span class='material-symbols-outlined text-slate-950 text-5xl'>play_arrow</span>
+                        </div>
+                    </div>
+                </div>
+                <div class='p-8'>
+                    <h3 class='text-2xl font-bold text-white mb-2'>{$videoTitulo}</h3>
+                    <p class='text-slate-500 text-xs uppercase font-bold tracking-widest'>Experiência 360° • {$videoTempo}</p>
+                </div>
+            </div>
+        </section>
+
+        <section class='glass p-12 rounded-[4rem] border-purple-500/10 text-center bg-purple-500/[0.01]'>
+            <h2 class='text-2xl font-bold text-white headline mb-4'>Abrir no Meta Quest</h2>
+            <p class='text-slate-400 text-sm mb-8'>Escanear para visualizar teoremas e formas geométricas em escala real.</p>
+            <div class='qr-box'>
+                <img src='https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://youtu.be/{$videoID}' class='w-40 h-40'>
+            </div>
+            <p class='mt-6 text-purple-500 font-mono text-[10px] tracking-widest uppercase'>Protocolo: MATH-VR-77</p>
+        </section>
+    </div>
+</div>
+
+<div id='videoModal' class='fixed inset-0 z-[100] hidden flex items-center justify-center p-6 bg-black/95 backdrop-blur-md'>
+    <div class='relative w-full max-w-5xl aspect-video bg-black rounded-[3rem] overflow-hidden border border-white/10'>
+        <button onclick='fecharVideo()' class='absolute top-6 right-6 text-white z-[110] bg-black/50 p-2 rounded-full'>
+            <span class='material-symbols-outlined'>close</span>
+        </button>
+        <iframe id='videoFrame' class='w-full h-full' src='' frameborder='0' allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+    function abrirVideo(url) { document.getElementById('videoFrame').src = url; document.getElementById('videoModal').classList.remove('hidden'); }
+    function fecharVideo() { document.getElementById('videoModal').classList.add('hidden'); document.getElementById('videoFrame').src = ''; }
+</script>";
+
+renderizar_pagina($titulo, $conteudo);
+?>
