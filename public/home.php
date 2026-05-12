@@ -21,7 +21,7 @@ $conteudo = "
                 </div>
                 <h1 class='text-5xl font-bold headline text-white mb-4'>Olá, " . ($_SESSION['usuario_nome'] ?? 'Estudante') . "!</h1>
                 <p class='text-slate-400 text-lg max-w-2xl leading-relaxed'>
-                    O sistema <span class='text-white font-semibold'>Spatial Core</span> está operando em capacidade total. 
+                    O sistema <span class='text-white font-semibold'>SENAI VR</span> está operando em capacidade total. 
                     Explore seus módulos de treinamento e laboratórios virtuais abaixo.
                 </p>
             </div>

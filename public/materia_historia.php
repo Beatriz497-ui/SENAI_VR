@@ -75,4 +75,25 @@ $conteudo = $extra_css . "
     </div>
 </div>
 
-<div id='videoModal' class='fixed inset-0 z-[100] hidden flex items-
+<div id='videoModal' class='fixed inset-0 z-[100] hidden flex items-center justify-center p-6 bg-black/95 backdrop-blur-md'>
+    <div class='relative w-full max-w-5xl aspect-video bg-black rounded-[3rem] overflow-hidden border border-white/10'>
+        <button onclick='fecharVideo()' class='absolute top-6 right-6 text-white z-[110] bg-black/50 p-2 rounded-full'>
+            <span class='material-symbols-outlined'>close</span>
+        </button>
+        <iframe id='videoFrame' class='w-full h-full' src='' frameborder='0' allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+    function abrirVideo(url) { 
+        document.getElementById('videoFrame').src = url; 
+        document.getElementById('videoModal').classList.remove('hidden'); 
+    }
+    function fecharVideo() { 
+        document.getElementById('videoModal').classList.add('hidden'); 
+        document.getElementById('videoFrame').src = ''; 
+    }
+</script>";
+
+renderizar_pagina($titulo, $conteudo);
+?>

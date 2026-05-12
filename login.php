@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($user) {
         $_SESSION['usuario_logado'] = true;
         $_SESSION['usuario_nome'] = $user['nome'];
-        header("Location: public/dashboard.php");
+        header("Location: public/home.php");
         exit();
     } else {
         $erro = "Falha na sincronização neural. Verifique suas credenciais.";

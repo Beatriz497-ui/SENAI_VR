@@ -80,7 +80,7 @@ $conteudo = $extra_css . "
                 <span class='status-dot-manual'></span> SISTEMA OPERACIONAL ATIVO
             </div>
             <h1 class='text-3xl font-bold headline tracking-tight text-white'>Manual de Operação Técnica</h1>
-            <p class='text-cyan-500/80 text-[10px] uppercase tracking-[0.3em] font-bold mt-1'>Spatial Core | Protocolo Meta Quest 3S</p>
+            <p class='text-cyan-500/80 text-[10px] uppercase tracking-[0.3em] font-bold mt-1'>SENAI VR | Protocolo Meta Quest 3S</p>
         </div>
     </header>
 
