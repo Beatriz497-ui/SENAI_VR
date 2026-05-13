@@ -102,60 +102,191 @@ $conteudo = $extra_css . "
 
         <main id='manual-content-area' class='w-3/4 glass-panel p-12 rounded-[2.5rem] overflow-y-auto custom-scrollbar'>
             
-            <div id='s1' class='content-section active space-y-6'>
-                <div class='flex items-center gap-4 text-cyan-400 font-bold tracking-widest text-xs uppercase'>
-                    <span class='h-[1px] w-8 bg-cyan-400'></span> Iniciação de Hardware
-                </div>
-                <h2 class='text-4xl font-bold text-white headline'>01. Setup Inicial & QR Code</h2>
-                <p class='text-slate-400 leading-relaxed text-lg'>Escaneie o código QR para ver os vídeos de configuração e instruções no aplicativo Meta Horizon.</p>
-                <img src='img/passo1.jpg' alt='QR Code Setup' class='step-img max-w-[500px]'>
-            </div>
-
-            <div id='s2' class='content-section space-y-6'>
-                <h2 class='text-4xl font-bold text-cyan-400 headline'>02. Ajuste das Lentes (IPD)</h2>
-                <p class='text-slate-400 leading-relaxed text-lg'>Mova as lentes manualmente até que a imagem central fique perfeitamente nítida.</p>
-                <img src='img/passo2.jpg' alt='Ajuste Lentes' class='step-img'>
-                <button onclick='abrirModalManual(\"img/foto_real_2.jpg\")' class='btn-demo'><span class='material-symbols-outlined'>visibility</span> VER DEMONSTRAÇÃO REAL</button>
-            </div>
-
-            <div id='s3' class='content-section space-y-6'>
-                <h2 class='text-4xl font-bold text-cyan-400 headline'>03. Uso com Óculos</h2>
-                <div class='grid grid-cols-1 xl:grid-cols-2 gap-8'>
-                    <div class='space-y-4'>
-                        <div class='flex gap-4 items-start'>
-                            <span class='bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-lg font-bold'>1</span>
-                            <p class='text-slate-300'>Remova a interface facial puxando pelas bordas.</p>
-                        </div>
-                        <div class='flex gap-4 items-start'>
-                            <span class='bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-lg font-bold'>2</span>
-                            <p class='text-slate-300'>Encaixe o espaçador de óculos para aumentar a distância.</p>
-                        </div>
-                        <button onclick='abrirModalManual(\"img/foto_real_3.jpg\")' class='btn-demo'><span class='material-symbols-outlined'>add_circle</span> VER DEMONSTRAÇÃO</button>
-                    </div>
-                    <img src='img/passo3_completo.jpg' alt='Espaçador' class='step-img'>
-                </div>
-            </div>
-
-            <div id='s5' class='content-section space-y-6'>
-                <h2 class='text-4xl font-bold text-red-500 headline uppercase italic'>05. ALERTA: Luz Solar</h2>
-                <div class='bg-red-500/10 border-l-4 border-red-500 p-8 rounded-2xl'>
-                    <p class='text-red-200 leading-relaxed text-xl'><strong>DANO IRREVERSÍVEL:</strong> 5 segundos de sol direto destroem os pixels do display permanentemente.</p>
-                </div>
-                <img src='img/passo5.jpg' alt='Alerta Luz' class='step-img border-red-500/40'>
-            </div>
-
-            </main>
+    
+        <div id='s1' class='content-section active space-y-8'>
+    <div class='flex items-center gap-4 text-cyan-400 font-bold tracking-widest text-xs uppercase'>
+        <span class='h-[1px] w-8 bg-cyan-400'></span> Iniciação de Hardware
+    </div>
+    <h2 class='text-4xl font-bold text-white headline'>01. Setup Inicial & QR Code</h2>
+    <div class='space-y-6'>
+        <p class='text-slate-300 text-lg text-justify'>
+            Escaneie o código QR abaixo para acessar os vídeos. Você pode fazer isso diretamente pela câmera do seu smartphone ou através das lentes do Meta Quest 3S.
+        </p>
+        <img src='./img/Passo1.jpg' class='w-full rounded-[2rem] border border-white/10 shadow-2xl aspect-video object-cover'>
+        <img src='./img/passo_1.jpg' class='w-full rounded-[2rem] border border-white/10 shadow-2xl aspect-video object-cover'>
     </div>
 </div>
 
-<div id='modalManual' class='fixed inset-0 z-[100] hidden flex items-center justify-center p-4'>
-    <div class='absolute inset-0 bg-black/90 backdrop-blur-md' onclick='fecharModalManual()'></div>
-    <div class='relative bg-slate-900 border border-white/10 rounded-[2.5rem] max-w-2xl w-full overflow-hidden shadow-2xl transition-all duration-300 scale-95 opacity-0' id='modalContainerManual'>
-        <button onclick='fecharModalManual()' class='absolute top-6 right-6 bg-red-500/20 hover:bg-red-500 text-red-500 hover:text-white w-10 h-10 rounded-full flex items-center justify-center z-10 transition-all'>
-            <span class='material-symbols-outlined'>close</span>
-        </button>
-        <img id='imgModalManual' src='' class='w-full h-auto'>
-        <div class='p-6 bg-slate-950/50 text-center text-slate-400 text-sm italic'>Referência visual para operação correta do equipamento.</div>
+<div id='s2' class='content-section space-y-8'>
+    <div class='flex items-center gap-4 text-cyan-400 font-bold tracking-widest text-xs uppercase'>
+        <span class='h-[1px] w-8 bg-cyan-400'></span> Calibração Óptica
+    </div>
+    <h2 class='text-4xl font-bold text-white headline'>02. Ajuste de Lentes</h2>
+    <div class='space-y-6'>
+        <p class='text-slate-300 text-lg text-justify'>
+            Mova as lentes manualmente para a esquerda ou direita até que a imagem central fique perfeitamente nítida. O ajuste correto evita fadiga ocular e garante a melhor imersão.
+        </p>
+        <img src='./img/Passo2.jpg' class='w-full rounded-[2rem] border border-white/10 shadow-2xl aspect-video object-cover'>
+    </div>
+</div>
+
+<div id='s3' class='content-section space-y-8'>
+    <div class='flex items-center gap-4 text-cyan-400 font-bold tracking-widest text-xs uppercase'>
+        <span class='h-[1px] w-8 bg-cyan-400'></span> Protocolo de Ergonomia
+    </div>
+    <h2 class='text-4xl font-bold text-white headline'>03. Uso com Óculos</h2>
+    <div class='space-y-6'>
+        <div class='flex gap-4 items-start'>
+            <span class='bg-cyan-500 text-slate-900 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0'>1</span>
+            <p class='text-slate-300 text-lg text-justify'>Remova a <strong>interface facial</strong> puxando firmemente pelas bordas laterais. Este componente é magnético ou de encaixe por pressão, projetado para sair sem danificar o hardware.</p>
+        </div>
+        <div class='flex gap-4 items-start'>
+            <span class='bg-cyan-500 text-slate-900 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0'>2</span>
+            <p class='text-slate-300 text-lg text-justify'>Encaixe o <strong>espaçador de óculos</strong> entre o headset e a interface facial. Este acessório cria a profundidade necessária para acomodar a armação dos seus óculos com segurança e conforto.</p>
+        </div>
+        <img src='./img/Passo3.jpg' class='w-full rounded-[2rem] border border-white/10 shadow-2xl aspect-video object-cover'>
+    </div>
+</div>
+
+<div id='s4' class='content-section space-y-8'>
+    <div class='flex items-center gap-4 text-cyan-400 font-bold tracking-widest text-xs uppercase'>
+        <span class='h-[1px] w-8 bg-cyan-400'></span> Energia do Sistema
+    </div>
+    <h2 class='text-4xl font-bold text-white headline'>04. Tampa da Bateria</h2>
+    <div class='space-y-6'>
+        <p class='text-slate-300 text-lg text-justify'>
+            Pressione o botão de ejeção na lateral do controle para liberar a tampa. Deslize-a para baixo para substituir a pilha AA. Verifique sempre a polaridade correta.
+        </p>
+        <img src='./img/Passo4.jpg' class='w-full rounded-[2rem] border border-white/10 shadow-2xl aspect-video object-cover'>
+    </div>
+</div>
+
+<div id='s5' class='content-section space-y-8'>
+    <div class='flex items-center gap-4 text-red-500 font-bold tracking-widest text-xs uppercase'>
+        <span class='h-[1px] w-8 bg-red-500'></span> Alerta de Segurança
+    </div>
+    <h2 class='text-4xl font-bold text-white headline'>05. Cuidado Crítico: Luz Solar</h2>
+    <div class='space-y-6 text-red-100 bg-red-950/20 p-6 rounded-3xl border border-red-500/20'>
+        <p class='text-lg text-justify'>
+            <strong>IMPORTANTE:</strong> Nunca exponha as lentes internas ao sol. A luz solar direta pode queimar permanentemente os ecrãs LCD do headset em poucos segundos.
+        </p>
+        <img src='./img/Passo5.jpg' class='w-full rounded-[2rem] border border-red-500/30 shadow-2xl aspect-video object-cover'>
+    </div>
+</div>
+
+<div id='s6' class='content-section space-y-8'>
+    <div class='flex items-center gap-4 text-cyan-400 font-bold tracking-widest text-xs uppercase'>
+        <span class='h-[1px] w-8 bg-cyan-400'></span> Sensores Ópticos
+    </div>
+    <h2 class='text-4xl font-bold text-white headline'>06. Rastreamento (Tracking)</h2>
+    <div class='space-y-6'>
+        <p class='text-slate-300 text-lg text-justify'>
+            Mantenha as câmeras de rastreamento externas limpas. O sistema utiliza estas câmeras para mapear o ambiente e reconhecer as mãos e os comandos.
+        </p>
+        <img src='./img/Passo6.jpg' class='w-full rounded-[2rem] border border-white/10 shadow-2xl aspect-video object-cover'>
+    </div>
+</div>
+
+<div id='s7' class='content-section space-y-8'>
+    <div class='flex items-center gap-4 text-cyan-400 font-bold tracking-widest text-xs uppercase'>
+        <span class='h-[1px] w-8 bg-cyan-400'></span> Ergonomia
+    </div>
+    <h2 class='text-4xl font-bold text-white headline'>07. Ajuste de Faixa (Strap)</h2>
+    <div class='space-y-6'>
+        <p class='text-slate-300 text-lg text-justify'>
+            Posicione a parte traseira da faixa na base do crânio. Ajuste as alças laterais e a alça de topo até que o headset esteja firme, mas confortável no rosto.
+        </p>
+        <img src='./img/Passo7.jpg' class='w-full rounded-[2rem] border border-white/10 shadow-2xl aspect-video object-cover'>
+    </div>
+</div>
+
+<div id='s8' class='content-section space-y-8'>
+    <div class='flex items-center gap-4 text-cyan-400 font-bold tracking-widest text-xs uppercase'>
+        <span class='h-[1px] w-8 bg-cyan-400'></span> Hardware Overview
+    </div>
+    <h2 class='text-4xl font-bold text-white headline'>08. Anatomia do Headset</h2>
+
+    <div class='space-y-6'>
+        <div class='grid grid-cols-1 gap-4 bg-slate-800/30 p-6 rounded-3xl border border-white/5'>
+            <div class='space-y-4'>
+                <p class='text-slate-300 text-lg text-justify'>
+                    <strong class='text-cyan-400'>[Liga/Desliga (Power Button)]:</strong> Geralmente localizado na lateral esquerda ou próximo à parte traseira da alça, é o botão utilizado para ligar, desligar ou colocar o dispositivo em modo de suspensão.
+                </p>
+                
+                <p class='text-slate-300 text-lg text-justify'>
+                    <strong class='text-cyan-400'>[Botões de Volume]:</strong> Normalmente posicionados na parte inferior ou lateral do visor, permitindo aumentar (+) e diminuir (-) o som do sistema de forma rápida.
+                </p>
+
+                <p class='text-slate-300 text-lg text-justify'>
+                    <strong class='text-cyan-400'>[Entrada USB-C]:</strong> Localizada na lateral esquerda do headset, usada para carregar a bateria interna e para transferência de dados ou conexão via Link com o PC.
+                </p>
+            </div>
+        </div>
+
+        <div class='relative rounded-[2rem] border border-white/10 shadow-2xl overflow-hidden bg-slate-900 aspect-video'>
+            <img src='./img/Passo8.jpg' alt='Anatomia Meta Quest 3S' 
+                 class='w-full h-full object-cover'>
+            
+            <div class='absolute top-6 right-6 bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10'>
+                <span class='text-white text-xs font-black tracking-tighter uppercase'></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id='s9' class='content-section space-y-8'>
+    <div class='flex items-center gap-4 text-cyan-400 font-bold tracking-widest text-xs uppercase'>
+        <span class='h-[1px] w-8 bg-cyan-400'></span> Controladores Touch Plus
+    </div>
+    <h2 class='text-4xl font-bold text-white headline'>09. Anatomia dos Controles & Como Ligar</h2>
+    
+    <div class='space-y-8'>
+        <div class='bg-slate-800/40 p-6 rounded-3xl border border-white/5'>
+            <h3 class='text-cyan-400 font-bold mb-3 flex items-center gap-2'>
+                <span class='material-icons text-sm'></span> ATIVAÇÃO E PAREAMENTO
+            </h3>
+            <p class='text-slate-300 text-lg text-justify'>
+                Para ligar os controles do <strong>Meta Quest 3S</strong>, basta colocar as pilhas AA e movimentá-los ou apertar qualquer botão; eles ligam automaticamente. Se não conectarem, segure o <strong>botão Meta (direito) e B</strong> por 4 segundos, ou o <strong>Menu (esquerdo) e Y</strong> até a luz piscar. O pareamento é confirmado com uma vibração.
+            </p>
+        </div>
+
+        <div class='grid grid-cols-1 md:grid-cols-2 gap-6 px-2'>
+            <div class='space-y-2'>
+                <p class='text-white font-semibold'>• Botões A e B (Direito):</p>
+                <p class='text-slate-400 text-sm text-justify'>A (Ação/Pular), B (Menu/Voltar).</p>
+                
+                <p class='text-white font-semibold pt-2'>• Botões X e Y (Esquerdo):</p>
+                <p class='text-slate-400 text-sm text-justify'>X (Ação/Menu), Y (Voltar).</p>
+            </div>
+            <div class='space-y-2'>
+                <p class='text-white font-semibold'>• Botão Meta (Direito):</p>
+                <p class='text-slate-400 text-sm text-justify'>Abre o menu universal (toque) ou recentraliza a visão (segurar).</p>
+                
+                <p class='text-white font-semibold pt-2'>• Botão Menu (Esquerdo):</p>
+                <p class='text-slate-400 text-sm text-justify'>Abre menus específicos dentro de jogos e aplicações.</p>
+            </div>
+        </div>
+
+        <div class='relative'>
+            <img src='./img/Passo9.jpg' class='w-full rounded-[2rem] border border-white/10 shadow-2xl aspect-video object-cover'>
+            <div class='absolute bottom-6 right-6 bg-cyan-500/20 backdrop-blur-md px-4 py-2 rounded-full border border-cyan-400/30'>
+                <span class='text-cyan-400 text-xs font-bold uppercase tracking-widest'>Touch Plus Controllers</span>
+            </div>
+        </div>
+
+                <div class='relative'>
+            <img src='./img/Passo9_1.jpg' class='w-full rounded-[2rem] border border-white/10 shadow-2xl aspect-video object-cover'>
+            <div class='absolute bottom-6 right-6 bg-cyan-500/20 backdrop-blur-md px-4 py-2 rounded-full border border-cyan-400/30'>
+                <span class='text-cyan-400 text-xs font-bold uppercase tracking-widest'>Touch Plus Controllers</span>
+            </div>
+        </div>
+
+                <div class='relative'>
+            <img src='./img/Passo9_2.jpg' class='w-full rounded-[2rem] border border-white/10 shadow-2xl aspect-video object-cover'>
+            <div class='absolute bottom-6 right-6 bg-cyan-500/20 backdrop-blur-md px-4 py-2 rounded-full border border-cyan-400/30'>
+                <span class='text-cyan-400 text-xs font-bold uppercase tracking-widest'>Touch Plus Controllers</span>
+            </div>
+        </div>
     </div>
 </div>
 
